@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdvBox Hub 2026 — Links & Recursos + IA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #0f3460 0%, #1a5490 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffd700;
+            backdrop-filter: blur(10px);
+        }
+        .stat-card strong {
+            display: block;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        .stat-card small {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+        .nav {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .nav h2 {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .filtros {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .filtro-btn {
+            padding: 8px 16px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+        .filtro-btn:hover, .filtro-btn.active {
+            background: #0f3460;
+            color: white;
+            border-color: #0f3460;
+        }
+        .setores-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .setor-link {
+            padding: 12px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #0f3460;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .setor-link:hover {
+            background: #0f3460;
+            color: white;
+        }
+        .content {
+            padding: 40px;
+        }
+        .section {
+            margin-bottom: 60px;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #0f3460;
+            padding-bottom: 15px;
+        }
+        .section-number {
+            background: #0f3460;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .section h2 {
+            font-size: 1.8em;
+            color: #0f3460;
+        }
+        .section-desc {
+            background: #f0f4ff;
+            padding: 15px;
+            border-left: 4px solid #ffd700;
+            margin-bottom: 25px;
+            border-radius: 4px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .ia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px dashed #0f3460;
+        }
+        .ia-card {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #ffd700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .ia-card strong {
+            color: #0f3460;
+            font-size: 0.95em;
+        }
+        .ia-card small {
+            display: block;
+            color: #666;
+            margin-top: 5px;
+            font-size: 0.85em;
+        }
+        .ia-badge {
+            display: inline-block;
+            background: #e8f1ff;
+            color: #0f3460;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        thead {
+            background: #0f3460;
+            color: white;
+        }
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .novo-badge {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-left: 5px;
+        }
+        .atualizado-badge {
+            display: inline-block;
+            background: #4ecdc4;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-left: 5px;
+        }
+        .pilar {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+        .pilar.gestao { background: #fff4e6; color: #d97706; }
+        .pilar.pessoas { background: #fce7f3; color: #be185d; }
+        .pilar.processo { background: #e0e7ff; color: #3730a3; }
+        .pilar.tecnologia { background: #ccfbf1; color: #0d9488; }
+        a {
+            color: #0f3460;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            word-break: break-word;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #ffd700;
+        }
+        .destaques {
+            background: #fef3c7;
+            border: 2px solid #fcd34d;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .destaques h3 {
+            color: #d97706;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        .destaque-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #fcd34d;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        .destaque-item:last-child {
+            border-bottom: none;
+        }
+        .destaque-item strong {
+            color: #d97706;
+        }
+        footer {
+            background: #f0f4ff;
+            padding: 20px 40px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9em;
+        }
+        .back-to-top {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 10px 20px;
+            background: #0f3460;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .back-to-top:hover {
+            background: #1a5490;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            table {
+                font-size: 0.9em;
+            }
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 AdvBox Hub 2026</h1>
+            <p class="subtitle">Recursos Digitais + Inteligência Artificial para Escritórios de Advocacia</p>
+            <div class="stats">
+                <div class="stat-card">
+                    <strong>6.000+</strong>
+                    <small>Escritórios Clientes</small>
+                </div>
+                <div class="stat-card">
+                    <strong>100.000+</strong>
+                    <small>Usuários Ativos</small>
+                </div>
+                <div class="stat-card">
+                    <strong>1 milhão/dia</strong>
+                    <small>Intimações Processadas</small>
+                </div>
+                <div class="stat-card">
+                    <strong>R$ 1 bilhão</strong>
+                    <small>Honorários Administrados</small>
+                </div>
+                <div class="stat-card">
+                    <strong>99,9%</strong>
+                    <small>Precisão JUSTIN-E</small>
+                </div>
+                <div class="stat-card">
+                    <strong>180%</strong>
+                    <small>Crescimento (2023-2025)</small>
+                </div>
+            </div>
+        </header>
+
+        <div class="nav">
+            <h2>Navegação Rápida</h2>
+            <div class="setores-nav">
+                <a href="#controladoria" class="setor-link">01 — Controladoria Jurídica</a>
+                <a href="#financeiro" class="setor-link">02 — Financeiro & DP</a>
+                <a href="#comercial" class="setor-link">03 — Marketing & Comercial</a>
+                <a href="#producao" class="setor-link">04 — Produção Jurídica</a>
+                <a href="#rh" class="setor-link">05 — Recursos Humanos</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- INTELIGÊNCIAS ARTIFICIAISBLOCO PRINCIPAL -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">🤖</div>
+                    <h2>Inteligências Artificiais AdvBox 2026</h2>
+                </div>
+                <p style="margin-bottom: 20px; color: #666; font-size: 0.95em;">
+                    A AdvBox desenvolveu e integrou IAs especializadas em cada etapa do fluxo jurídico. Após a aquisição da LawX (agosto/2026), 
+                    o portfólio de agentes jurídicos foi ampliado para 20+ áreas do Direito.
+                </p>
+                <div class="ia-grid">
+                    <div class="ia-card">
+                        <strong>JUSTIN-E</strong><br>
+                        <span class="pilar tecnologia">Tecnologia</span>
+                        <small>IA especializada em leitura, análise e tratamento automático de intimações. Calcula prazos (D0-D-5), identifica tipo de ato judicial e sugere tarefas conforme padrão do escritório. Com aprendizado adaptativo: aprende o que o escritório usa/descarta e refina recomendações.</small>
+                        <span class="ia-badge">Disponível: Plano Elite+</span>
+                    </div>
+                    <div class="ia-card">
+                        <strong>DONNA</strong><br>
+                        <span class="pilar gestao">Gestão</span>
+                        <small>Assistente estratégica com acesso aos dados do escritório: processos, clientes, financeiro, tarefas, agenda. Gera relatórios completos, realiza consultas externas (CPF/CNPJ) e pesquisa na internet. Novo: capacidade de análise jurométrica.</small>
+                        <span class="ia-badge">Disponível: Plano Elite+ | R$ 200/mês</span>
+                    </div>
+                    <div class="ia-card">
+                        <strong>DONNA Mobile</strong><br>
+                        <span class="pilar tecnologia">Tecnologia</span>
+                        <small>Versão mobile da Donna. Atendimento em campo, check-in de equipe, acesso a dados do escritório via smartphone. Ideal para SDR, Closer e Controller em mobilidade.</small>
+                        <span class="ia-badge">Novo • Plano Elite+</span>
+                    </div>
+                    <div class="ia-card">
+                        <strong>Agentes de Petição (LawX)</strong><br>
+                        <span class="pilar tecnologia">Tecnologia</span>
+                        <small>20+ agentes jurídicos especializados. Cada um compreende lógica específica de uma área (CDC, Previdenciário, Saúde, Trabalhista, etc). Geração automática de petições e recursos em minutos, contextualizados ao processo.</small>
+                        <span class="ia-badge">Novo • Plano Banca Max</span>
+                    </div>
+                    <div class="ia-card">
+                        <strong>AUDITA</strong><br>
+                        <span class="pilar tecnologia">Tecnologia</span>
+                        <small>IA para análise de documentos complexos: documentos, imagens, áudios, vídeos, planilhas, conversas. Extrai informações e estrutura dados para apoiar elaboração de peças jurídicas.</small>
+                        <span class="ia-badge">Em desenvolvimento • 2026</span>
+                    </div>
+                    <div class="ia-card">
+                        <strong>Flowter</strong><br>
+                        <span class="pilar tecnologia">Tecnologia</span>
+                        <small>"Assistente invisível" — automação de fluxos com gatilhos simples. "Quando ISSO → Faça AQUILO". Transforma eventos processuais em sequências automáticas de tarefas. Substitui workflow antigo. Sem programação.</small>
+                        <span class="ia-badge">Todos os planos</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 01 CONTROLADORIA JURÍDICA -->
+            <div class="section" id="controladoria">
+                <div class="section-header">
+                    <div class="section-number">01</div>
+                    <h2>Controladoria Jurídica</h2>
+                </div>
+                <div class="section-desc">
+                    Setor de maior transversalidade — conecta prazos, qualidade, ajuizamentos, pós-venda e feedback de clientes. Com as IAs JUSTIN-E e Flowter, 
+                    a controladoria mudou seu modelo: de reativa (leitura manual) para proativa (triagem automática + aprendizado contínuo).
+                </div>
+
+                <h3 style="color: #0f3460; margin: 25px 0 15px 0; font-size: 1.1em;">🤖 IAs Principais</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>IA</th>
+                            <th>Função</th>
+                            <th>Ganho Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>JUSTIN-E</strong> <span class="atualizado-badge">2.0</span></td>
+                            <td>Leitura automática de intimações, cálculo de prazos, sugestão de tarefas</td>
+                            <td>500 intimações/mês = 1 FTE/ano; aprendizado contínuo reduz genéricos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flowter</strong></td>
+                            <td>Automação de fluxos pós-JUSTIN-E: gatilho → tarefas automáticas</td>
+                            <td>Elimina retrabalho manual; encadeia etapas sem supervisão</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="color: #0f3460; margin: 25px 0 15px 0; font-size: 1.1em;">📋 Rotinas Mapeadas</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rotina / Material</th>
+                            <th>Pilar</th>
+                            <th>Necessidade Mapeada</th>
+                            <th>Link / Recurso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Senhas e Logins</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Gestão segura de acessos e credenciais por perfil</td>
+                            <td><a href="https://guia.advbox.com.br/agentes-de-ia/justin-e-o-que-e-como-funciona-e-como-configurar" target="_blank">🔗 Central: JUSTIN-E</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rotina Leitura de Intimações</strong> <span class="atualizado-badge">ATUALIZADO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Distribuição automática e tratamento de intimações via JUSTIN-E com aprendizado adaptativo</td>
+                            <td><a href="https://guia.advbox.com.br/agentes-de-ia/donna-assistente-juridica-ia" target="_blank">🔗 Central: DONNA</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aprendizado Adaptativo JUSTIN-E</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>IA aprende padrões do escritório; tarefas nunca usadas deixam de ser sugeridas; cada correção alimenta análises futuras</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">▶ YouTube: Gestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Integração JUSTIN-E + LLMs Externos</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Conectar JUSTIN-E a Claude ou LLMs para análises contextualizadas sofisticadas (classificação, estruturação)</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">▶ YouTube: Gestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rotina Emissão de Custas</strong> <span class="atualizado-badge">ATUALIZADO</span></td>
+                            <td><span class="pilar processo">Processo</span></td>
+                            <td>Controle financeiro de custas processuais com Flowter automático</td>
+                            <td><a href="https://guia.advbox.com.br/flowter/flowter" target="_blank">🔗 Central: Flowter</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flowter — Gestão de Prazos</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Configuração do Flowter: tratar intimação → protocolos → prazos fatais com estagnação de 1 dia</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">▶ YouTube: Gestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Checklist para Ajuizamento</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar processo">Processo</span></td>
+                            <td>Modelo de checklist de documentos por tipo de ação</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">▶ YouTube: Gestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relatórios BI — Controladoria</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar gestao">Gestão</span></td>
+                            <td>Acesso e interpretação dos relatórios de produtividade, prazos, qualidade e desempenho JUSTIN-E</td>
+                            <td><em>Menu AdvBox — Relatórios</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Análise de Casos Perdidos</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar gestao">Gestão</span></td>
+                            <td>Protocolo de saneamento pré-processual e análise de falhas com dados JUSTIN-E</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">▶ YouTube: Gestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tutorial Menu Intimações</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Vídeo e artigo sobre menu de intimações e como JUSTIN-E processa automaticamente</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Processos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>▶ Tutorial AdvBox — YouTube</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>58 vídeos. Trilha completa incluindo JUSTIN-E, Flowter e IAs integradas</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgzX0Cap9wdO32y7swBJDTV" target="_blank">YouTube — Tutorial</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>▶ Controladoria Jurídica Digital — YouTube</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar gestao">Gestão</span></td>
+                            <td>9 vídeos. Controladoria integrada ao digital: JUSTIN-E, pós-venda, NPS, qualidade e controle de prazos</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FjY5-LtALMzLI_ENE-p8-KU" target="_blank">YouTube — Controladoria Digital</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="destaques">
+                    <h3>⚡ Destaques Críticos · Controladoria</h3>
+                    <div class="destaque-item"><strong>JUSTIN-E com aprendizado:</strong> Aprende padrões do escritório com frequência de uso; reduz sugestões genéricas conforme o tempo; cada correção alimenta análise futura.</div>
+                    <div class="destaque-item"><strong>Integração com LLMs:</strong> Combine JUSTIN-E + Claude para análises contextualizadas sofisticadas antes da ação humana.</div>
+                    <div class="destaque-item"><strong>Flowter de prazos:</strong> Deve ser configurado com estagnação de 1 dia para garantir antecipação de prazos fatais.</div>
+                    <div class="destaque-item"><strong>BI de Controladoria:</strong> Relatórios de produtividade, qualidade e eficiência de JUSTIN-E são essenciais para reuniões de controle.</div>
+                </div>
+            </div>
+
+            <!-- 02 FINANCEIRO & DEPARTAMENTO PESSOAL -->
+            <div class="section" id="financeiro">
+                <div class="section-header">
+                    <div class="section-number">02</div>
+                    <h2>Financeiro & Departamento Pessoal</h2>
+                </div>
+                <div class="section-desc">
+                    Coração operacional da saúde financeira do escritório. DONNA agora gera relatórios completos de DRE/DFC em tempo real, 
+                    consulta dados externos (CPF/CNPJ) e oferece análise jurométrica. Integração com ASAAS para automação de boletos e cobrança.
+                </div>
+
+                <h3 style="color: #0f3460; margin: 25px 0 15px 0; font-size: 1.1em;">🤖 IAs Principais</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>IA</th>
+                            <th>Função</th>
+                            <th>Ganho Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>DONNA</strong> <span class="atualizado-badge">2.0</span></td>
+                            <td>Geração de relatórios DRE/DFC, consulta de CPF/CNPJ, análises jurométricas</td>
+                            <td>Decisões financeiras em tempo real com dados contextualizados</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flowter</strong></td>
+                            <td>Automação de fluxos financeiros: pagamentos → receitas → DP</td>
+                            <td>Zero retrabalho manual em ciclos recorrentes</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="color: #0f3460; margin: 25px 0 15px 0; font-size: 1.1em;">📋 Rotinas Mapeadas</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rotina / Material</th>
+                            <th>Pilar</th>
+                            <th>Necessidade Mapeada</th>
+                            <th>Link / Recurso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Rotina Uso do AdvBox — Financeiro</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Primeiros passos e configuração do menu financeiro</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>DONNA para DRE/DFC</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar gestao">Gestão</span></td>
+                            <td>Geração automática de relatórios completos com indicadores estratégicos</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>DONNA — Consultas Externas (CPF/CNPJ)</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar gestao">Gestão</span></td>
+                            <td>Análise de clientes com verificação de dados públicos e histórico financeiro</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gestão de Cobranças — ASAAS</strong> <span class="atualizado-badge">ATUALIZADO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Geração de boletos, cobranças recorrentes e régua de inadimplência automática</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flowter — Gestão de Pagamentos</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Fluxo: verificar pagamentos → classificar → efetuar → registrar automaticamente</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flowter — Gestão de Pessoal (DP)</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar pessoas">Pessoas</span></td>
+                            <td>Fluxo: admissão → cadastro → avaliação → desligamento com documentação</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gestão de Honorários</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar gestao">Gestão</span></td>
+                            <td>Parametrização de honorários por tipo de ação com previsão de recebíveis</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>▶ Gestão Jurídica & BI — YouTube</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar gestao">Gestão</span></td>
+                            <td>17 vídeos. Uso de DONNA e dados AdvBox para tomada de decisão estratégica: DRE, DFC, relatórios gerenciais</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FhD5TyZpIAPV_wPtDagCDII" target="_blank">YouTube — Gestão & BI</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="destaques">
+                    <h3>⚡ Destaques Críticos · Financeiro</h3>
+                    <div class="destaque-item"><strong>DONNA gera relatórios em tempo real:</strong> DRE/DFC completos exportáveis, sem necessidade de consulta manual ao BI.</div>
+                    <div class="destaque-item"><strong>Integração ASAAS indispensável:</strong> Elimina retrabalho manual de cobrança e boletos; automação da régua de inadimplência.</div>
+                    <div class="destaque-item"><strong>Flowter para DP:</strong> Ciclo completo de RH (admissão-desligamento) sem esquecimentos ou risco trabalhista.</div>
+                    <div class="destaque-item"><strong>Consultas externas DONNA:</strong> Análise de clientes com dados de CPF/CNPJ integrada — decisões comerciais mais embasadas.</div>
+                </div>
+            </div>
+
+            <!-- 03 MARKETING & COMERCIAL -->
+            <div class="section" id="comercial">
+                <div class="section-header">
+                    <div class="section-number">03</div>
+                    <h2>Marketing & Comercial (SDR / Closer)</h2>
+                </div>
+                <div class="section-desc">
+                    Jornada completa do lead: atração → SDR → Closer → fechamento. DONNA Mobile agora acompanha equipe em campo; 
+                    DONNA também analisa conversão de leads e desempenho do funil com dados contextualizados do CRM AdvBox.
+                </div>
+
+                <h3 style="color: #0f3460; margin: 25px 0 15px 0; font-size: 1.1em;">🤖 IAs Principais</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>IA</th>
+                            <th>Função</th>
+                            <th>Ganho Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>DONNA Mobile</strong> <span class="novo-badge">NOVO</span></td>
+                            <td>Assistente virtual no celular para SDR/Closer em campo</td>
+                            <td>Acesso a dados de clientes, histórico, próximos passos — sem sair do telefone</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DONNA</strong></td>
+                            <td>Análise de leads, conversão de funil, desempenho individual</td>
+                            <td>Insights em tempo real sobre o que está funcionando ou não</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="color: #0f3460; margin: 25px 0 15px 0; font-size: 1.1em;">📋 Rotinas Mapeadas</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rotina / Material</th>
+                            <th>Pilar</th>
+                            <th>Necessidade Mapeada</th>
+                            <th>Link / Recurso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Rotina Uso do CRM AdvBox</strong> <span class="atualizado-badge">ATUALIZADO</span></td>
+                            <td><span class="pilar processo">Processo</span></td>
+                            <td>Configuração de funil SDR → Closer com etapas e estagnações; integração com DONNA para análise</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05Fh609a92y-kb0stuupeLtvu" target="_blank">YouTube — CRM AdvBox</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>DONNA Mobile para Atendimento em Campo</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Acesso mobile a dados de clientes, histórico, próximos passos e status de oportunidades</td>
+                            <td><a href="https://advbox.com.br/ia-para-escritorio-de-advocacia" target="_blank">📝 Blog: IA para Escritórios</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>DONNA — Análise de Leads & Conversão</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar gestao">Gestão</span></td>
+                            <td>Geração de insights sobre performance do funil: leads por origem, taxa de conversão, tempo médio</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Feedback Clientes (NPS)</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar pessoas">Pessoas</span></td>
+                            <td>Pesquisa de satisfação e NPS automatizado via CRM ou DONNA</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">▶ YouTube: Gestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flowter — Atendimento SDR</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Fluxo automático: triagem de lead → análise de caso → agendamento com possibilidades</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flowter — Jornada do Closer</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Fluxo: reunião de fechamento → negociação → contrato assinado → cadastro de cliente/processo</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>▶ Setor Comercial do Escritório — YouTube</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar processo">Processo</span></td>
+                            <td>10 vídeos. Estruturação do setor comercial: funil SDR → Closer, scripts, CRM e conversão de leads</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FjbrdtVw7jDRSMSl382h1t2" target="_blank">YouTube — Comercial</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="destaques">
+                    <h3>⚡ Destaques Críticos · Comercial</h3>
+                    <div class="destaque-item"><strong>DONNA Mobile em campo:</strong> SDR e Closer com acesso completo a dados de clientes sem sair do celular.</div>
+                    <div class="destaque-item"><strong>Análise de conversão DONNA:</strong> Identifica qual origem de lead converte melhor, qual etapa trava o funil.</div>
+                    <div class="destaque-item"><strong>Flowter para SDR + Closer:</strong> Duas jornadas paralelas bem definidas com automação completa de tarefas e prazos.</div>
+                </div>
+            </div>
+
+            <!-- 04 PRODUÇÃO JURÍDICA -->
+            <div class="section" id="producao">
+                <div class="section-header">
+                    <div class="section-number">04</div>
+                    <h2>Produção Jurídica</h2>
+                </div>
+                <div class="section-desc">
+                    Núcleo técnico do escritório. MAIOR TRANSFORMAÇÃO: após aquisição da LawX (ago/2026), 20+ Agentes de Petição 
+                    especializados agora geram peças automáticas por matéria. AUDITA vem para análise de documentos complexos. 
+                    JUSTIN-E cuida da triagem de intimações.
+                </div>
+
+                <h3 style="color: #0f3460; margin: 25px 0 15px 0; font-size: 1.1em;">🤖 IAs Principais</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>IA</th>
+                            <th>Função</th>
+                            <th>Ganho Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Agentes de Petição (LawX)</strong> <span class="novo-badge">NOVO</span></td>
+                            <td>20+ agentes jurídicos especializados por área (CDC, Previdenciário, Saúde, Trabalhista, etc.)</td>
+                            <td>Geração automática de peças em minutos; horas de trabalho repetitivo convertidas em minutos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AUDITA</strong> <span class="novo-badge">NOVO</span></td>
+                            <td>Análise de documentos, imagens, áudios, vídeos, planilhas para estruturação de peças</td>
+                            <td>Documentos complexos analisados automaticamente; estruturação de dados sem digitação manual</td>
+                        </tr>
+                        <tr>
+                            <td><strong>JUSTIN-E</strong></td>
+                            <td>Triagem de intimações, cálculo de prazos, sugestão de próximos passos</td>
+                            <td>Advogado recebe apenas intimações críticas já analisadas</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="color: #0f3460; margin: 25px 0 15px 0; font-size: 1.1em;">📋 Rotinas Mapeadas</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rotina / Material</th>
+                            <th>Pilar</th>
+                            <th>Necessidade Mapeada</th>
+                            <th>Link / Recurso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Agentes de Petição (LawX) — 20+ Áreas</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Geração automática de petições, recursos e manifestações especializadas por matéria jurídica</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">▶ YouTube: Gestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Análise Contratual + ID de Riscos (LawX)</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Análise automática de contratos com identificação de riscos e gaps</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">▶ YouTube: Gestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pesquisa Jurisprudencial Integrada (LawX)</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar processo">Processo</span></td>
+                            <td>Busca estruturada de jurisprudência em STJ, STF e tribunais estaduais; relatórios de teses consolidadas</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">▶ YouTube: Gestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AUDITA — Análise de Documentos</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>IA para análise de documentos, imagens, áudios, vídeos, planilhas e conversas para estruturação de peças</td>
+                            <td><em>Em desenvolvimento (2026)</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rotina Ajuizamento</strong> <span class="atualizado-badge">ATUALIZADO</span></td>
+                            <td><span class="pilar processo">Processo</span></td>
+                            <td>Fluxo completo: checklist → Agente de Petição → protocolo → cadastro de processo no AdvBox</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Biblioteca de Peças (LawX)</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar processo">Processo</span></td>
+                            <td>Repositório organizado de peças jurídicas por tipo de ação, complexidade e jurisprudência anexada</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">▶ YouTube: Gestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>▶ Produtividade — YouTube</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar processo">Processo</span></td>
+                            <td>13 vídeos. Técnicas para aumentar produtividade: rotinas, Taskscore, prioridades, delegação com Agentes</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05Fg_yS54AYyUkqaESUgJ8ju4" target="_blank">YouTube — Produtividade</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>▶ Produção Jurídica com IA — YouTube</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar tecnologia">Tecnologia</span></td>
+                            <td>Playlist de tutoriais sobre Agentes de Petição, AUDITA e LawX — como usar na rotina prática</td>
+                            <td><a href="https://advbox.com.br/ia-para-escritorio-de-advocacia" target="_blank">📝 Blog: IA Produção</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="destaques">
+                    <h3>⚡ Destaques Críticos · Produção</h3>
+                    <div class="destaque-item"><strong>Agentes de Petição (LawX) — maior ganho de produtividade:</strong> 20+ agentes jurídicos especializados; cada um compreende lógica específica da área; geração de peças em minutos vs horas.</div>
+                    <div class="destaque-item"><strong>Análise contratual com ID de riscos:</strong> Documentos volumosos analisados automaticamente; riscos jurídicos identificados antes da assinatura.</div>
+                    <div class="destaque-item"><strong>AUDITA em desenvolvimento:</strong> Quando lançada, analisará documentos complexos, imagens, áudios e vídeos para estruturação automática de peças.</div>
+                    <div class="destaque-item"><strong>Pesquisa jurisprudencial integrada:</strong> STJ, STF e tribunais estaduais — sem necessidade de saída do AdvBox para pesquisa manual.</div>
+                </div>
+            </div>
+
+            <!-- 05 RECURSOS HUMANOS -->
+            <div class="section" id="rh">
+                <div class="section-header">
+                    <div class="section-number">05</div>
+                    <h2>Recursos Humanos</h2>
+                </div>
+                <div class="section-desc">
+                    Mapeamento completo de recursos digitais para RH. DONNA Mobile agora facilita acompanhamento de equipe via mobile; 
+                    Flowter automatiza ciclos de admissão e desligamento sem esquecimentos. PDI, Mapa de Skills e Avaliação de Desempenho 
+                    são os recursos mais impactantes e ainda ausentes em muitos escritórios.
+                </div>
+
+                <h3 style="color: #0f3460; margin: 25px 0 15px 0; font-size: 1.1em;">🤖 IAs Principais</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>IA</th>
+                            <th>Função</th>
+                            <th>Ganho Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>DONNA Mobile</strong> <span class="novo-badge">NOVO</span></td>
+                            <td>Check-in de equipe, acompanhamento de 1:1, feedback via mobile</td>
+                            <td>RH acompanha equipe em tempo real sem necessidade de ir a desk</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flowter</strong></td>
+                            <td>Automação de ciclos: admissão → cadastro → avaliação → desligamento</td>
+                            <td>Zero retrabalho; checklists automáticos com prazos</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="color: #0f3460; margin: 25px 0 15px 0; font-size: 1.1em;">📋 Rotinas Mapeadas</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rotina / Material</th>
+                            <th>Pilar</th>
+                            <th>Necessidade Mapeada</th>
+                            <th>Link / Recurso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Rotina Onboarding</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar pessoas">Pessoas</span></td>
+                            <td>Checklist de integração do novo colaborador com trilha AdvBox</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">▶ YouTube: Gestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flowter — Admissão de Colaborador</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar processo">Processo</span></td>
+                            <td>Automação: coleta de docs → cadastro AdvBox → criação de usuários → envio de boas-vindas</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flowter — Desligamento de Colaborador</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar processo">Processo</span></td>
+                            <td>Automação: cálculo de rescisão → documentos → remoção de acessos → comunicação</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>PDI — Plano de Desenvolvimento Individual</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar pessoas">Pessoas</span></td>
+                            <td>Trilha de PDI por nível: Onboarding → Cultura → Domínio Técnico → Liderança</td>
+                            <td><em>Criar internamente com modelo AdvBox</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mapa de Skills por Papel</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar pessoas">Pessoas</span></td>
+                            <td>Habilidades técnicas e comportamentais mapeadas por setor/papel com critérios de progressão</td>
+                            <td><em>Planilha interna estruturada</em></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Avaliação de Desempenho</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar gestao">Gestão</span></td>
+                            <td>Avaliação por período + autoavaliação + nota do treinador + métricas BI do AdvBox</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relatórios BI — RH</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar gestao">Gestão</span></td>
+                            <td>Produtividade individual, tarefas cumpridas/atrasadas, tempo médio por tipo de tarefa</td>
+                            <td><a href="https://guia.advbox.com.br/entenda-primeiro-processos/entenda-o-menu-processos" target="_blank">🔗 Central: Recursos</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>▶ Autogestão na Advocacia — YouTube</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar pessoas">Pessoas</span></td>
+                            <td>11 vídeos. Princípios de autogestão: autonomia das equipes, PDI, onboarding, cultura de resultados</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FjZ9yTmsj0kSkd9AlDikmkr" target="_blank">YouTube — Autogestão</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>▶ Gestão de Escritórios de Advocacia — YouTube</strong> <span class="novo-badge">NOVO</span></td>
+                            <td><span class="pilar gestao">Gestão</span></td>
+                            <td>49 vídeos. Curso completo: indicadores, estrutura organizacional, liderança, processos internos</td>
+                            <td><a href="https://www.youtube.com/playlist?list=PLVjPVdES05FgK4oH1kF_OYfcEJngym0jB" target="_blank">YouTube — Gestão</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="destaques">
+                    <h3>⚡ Destaques Críticos · RH</h3>
+                    <div class="destaque-item"><strong>PDI, Mapa de Skills e Avaliação:</strong> Estes 3 recursos são os mais ausentes em RH de escritórios e os mais impactantes para retenção e desenvolvimento.</div>
+                    <div class="destaque-item"><strong>Flowter para Admissão/Desligamento:</strong> Sem automação, gera retrabalho, esquecimentos e risco trabalhista (documentação incompleta).</div>
+                    <div class="destaque-item"><strong>DONNA Mobile para acompanhamento:</strong> RH conectado à equipe via mobile; check-ins e feedback sem necessidade de ir a desk.</div>
+                    <div class="destaque-item"><strong>Relatórios BI — Taskscore:</strong> Métrica individual de produtividade e performance por papel; base para avaliações e bônus.</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="#" class="back-to-top">↑ Voltar ao Topo</a>
+            </div>
+        </div>
+
+        <footer>
+            <strong>AdvBox Hub 2026 — Atualizado em Setembro/2026</strong><br>
+            Dados: 6 mil escritórios | 100 mil usuários | 1 milhão intimações/dia | R$ 1 bilhão em honorários | 180% crescimento (2023-2025)<br>
+            Aquisição LawX: agosto/2026 | Novos produtos em desenvolvimento: Donna Mobile ✓ | Honorários Pay | Audita | Assinador Oficial<br>
+            <em>Recurso mantido por Paulo Victor Moreira Consultoria — @pv.gestaojuridica</em>
+        </footer>
+    </div>
+</body>
+</html>
